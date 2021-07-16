@@ -1,0 +1,11 @@
+<script src="bootstrap5/jquery-3.6.0.min.js"></script>
+<script src="bootstrap5/bootstrap5.min.js"></script>
+<script src="bootstrap5/popper.min.js"></script>
+<script src="chartJS/Chart.min.js"></script>
+<script src="sweetalert2/sweetalert2.min.js"></script>
+<script src="dataTables/datatables.min.js"></script>
+<script src="dataTables/ellipsis.js"></script>
+<script src="dataTables/pdfmake.min.js"></script>
+<script src="dataTables/vfs_fonts.js"></script>
+<script src="dataTables/script.js"></script>
+<script src="index.js"></script>

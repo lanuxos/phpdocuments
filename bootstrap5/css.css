@@ -1,0 +1,174 @@
+@font-face {
+    font-family: 'defago';
+    src: url('./defago.ttf') format('truetype');
+}
+
+* {
+    font-family: 'defago', 'Defago Noto Sans',
+    'Phetsarath OT',
+    'Times New Roman';
+    font-size: 1em;
+}
+
+.english {
+    font-family: 'Times New Roman';
+}
+
+.lao {
+    font-family: 'defago', 'Defago Noto Sans', 'Phetsarath OT';
+}
+
+.w100 {
+    width: 100%;
+}
+
+.w95 {
+    width: 95%;
+}
+
+.w90 {
+    width: 90%;
+}
+
+.w85 {
+    width: 85%;
+}
+
+.w80 {
+    width: 80%;
+}
+
+.w75 {
+    width: 75%;
+}
+
+.w70 {
+    width: 70%;
+}
+
+.w65 {
+    width: 65%;
+}
+
+.w60 {
+    width: 60%;
+}
+
+.w55 {
+    width: 55%;
+}
+
+.w50 {
+    width: 50%;
+}
+
+.w45 {
+    width: 45%;
+}
+
+.w40 {
+    width: 40%;
+}
+
+.w35 {
+    width: 35%;
+}
+
+.w30 {
+    width: 30%;
+}
+
+.w25 {
+    width: 25%;
+}
+
+.w20 {
+    width: 20%;
+}
+
+.w15 {
+    width: 15%;
+}
+
+.w10 {
+    width: 10%;
+}
+
+.w5 {
+    width: 5%;
+}
+
+.h100 {
+    height: 100%;
+}
+
+.h50 {
+    height: 50%;
+}
+
+table {
+    margin-top: 5px;
+    padding-top: 5px;
+}
+body {
+    margin-bottom: 60px;
+    /* Margin bottom by footer height */
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    /* Don't forget this, required for the stickiness */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    background: darkslategrey;
+}
+
+th.rotate {
+    /* Something you can count on */
+    height: 120px;
+    white-space: nowrap;
+}
+
+th.rotate>div {
+    transform:
+        /* Magic Numbers */
+        /* translate(25px, 51px) */
+        /* 45 is really 360 - 45 */
+        rotate(340deg);
+    width: 30px;
+}
+
+th.rotate>div>span {
+    border-bottom: 1px solid #ccc;
+    padding: 1px 1px;
+}
+th.verticaltext {
+    transform: rotate(-90deg);
+    transform-origin: 0 0 0 0;
+}
+.navbar-nav li:hover .dropdown-menu {
+    display: block;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2em;
+    background-color: black;
+    color: black;
+    text-align: center;
+}
+.darkolivegreenbg{
+    background-color: #556b2f;
+}
+.darkolivegreen {
+    color: #556b2f;
+}
+
+.fitcontent{
+    width:fit-content;
+}
+.navbar {
+    width: 100%;
+}
