@@ -22,7 +22,7 @@ require('datalist.php');
                         <span class="input-group-text">#</span>
                         <input type="text" class="form-control" placeholder="ເລກທີ ເອກະສານ" aria-label="ເລກທີ ເອກະສານ" name="no" id="no">
                         <span class="input-group-text">ວດປ</span>
-                        <input type="date" class="form-control" placeholder="ວດປ ເອກະສານ" aria-label="ວດປ ເອກະສານ" name="date" id="date">
+                        <input type="date" class="form-control" placeholder="ວດປ ເອກະສານ" aria-label="ວດປ ເອກະສານ" name="date" id="date" value="<?php echo date("Y-m-d");?>">
                     </div>
 
                     <div class="input-group m-1 mt-3">

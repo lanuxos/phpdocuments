@@ -2,14 +2,33 @@
 require('conn.php');
 $title = basename($_SERVER['PHP_SELF']);
 $year = date("Y");
-if (isset($_POST['submit'])) {
+if (isset($_POST['dateSubmit'])) {
     $from = $_POST['from'];
     $to = $_POST['to'];
     $currentYearRecords = $link->query("SELECT * FROM documents WHERE datein BETWEEN '$from' AND '$to'");
 } elseif (isset($_POST['all'])) {
-    echo 'all';
+    $currentYearRecords = $link->query("SELECT * FROM documents");
+} elseif (isset($_POST['monthSubmit'])) {
+    $month = $_POST['month'];
+    $currentYearRecords = $link->query("SELECT * FROM documents WHERE MONTH(datein) = '$month'");
+} elseif (isset($_POST['quarterSubmit'])) {
+    $quarter = $_POST['quarter'];
+    if($quarter == 1){
+        $from = 1;
+        $to = 3;    
+    } elseif ($quarter == 2){
+        $from = 4;
+        $to = 6;    
+    } elseif ($quarter == 3){
+        $from = 7;
+        $to = 8;    
+    } else{
+        $from = 9;
+        $to = 12;    
+    }
+    $currentYearRecords = $link->query("SELECT * FROM documents WHERE MONTH(datein) BETWEEN '$from' AND '$to'");
 } else {
-    $currentYearRecords = $link->query("SELECT * FROM documents WHERE YEAR(datein) = '$year'");
+    $currentYearRecords = $link->query("SELECT * FROM documents WHERE YEAR(datein) = '$year' ORDER BY id DESC");
 }
 ?>
 <!DOCTYPE html>
@@ -28,6 +47,7 @@ if (isset($_POST['submit'])) {
     <?php require('viewForm.php'); ?>
     <?php require('insertForm.php'); ?>
     <?php require('searchForm.php'); ?>
+    <?php require('monthForm.php'); ?>
     <div class="container-fluid mt-1">
         <div class="row m-1 bg-light p-1">
             <div class="col">
@@ -78,7 +98,8 @@ if (isset($_POST['submit'])) {
                                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
                                             <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
                                         </svg>
-                                        <?php echo substr($ar['noin'], 4); ?>
+                                        <!-- <?php echo substr($ar['noin'], 4); ?> -->
+                                        <?php echo $ar['noin']; ?>
                                     </button>
                                 </td>
                                 <td class="text-truncate">
@@ -106,27 +127,27 @@ if (isset($_POST['submit'])) {
                                     $statusButton = '';
                                     $status = $ar['status'];
                                     if ($status == 'ລໍຖ້າ') {
-                                        $statusButton .= '<h6><span class="badge bg-secondary form-control">';
+                                        $statusButton .= '<h5><span class="badge bg-secondary form-control">';
                                         $statusButton .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass-split" viewBox="0 0 16 16">
   <path d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z"/>
 </svg>';
-                                        $statusButton .= $status . '</span></h6>';
+                                        $statusButton .= $status . '</span></h5>';
                                         echo $statusButton;
                                     } elseif ($status == 'ເຊັນແລ້ວ') {
-                                        $statusButton .= '<h6><span class="badge bg-primary form-control">';
+                                        $statusButton .= '<h5><span class="badge bg-primary form-control">';
                                         $statusButton .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-vector-pen" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"/>
   <path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"/>
 </svg>';
-                                        $statusButton .= $status . '</span></h6>';
+                                        $statusButton .= $status . '</span></h5>';
                                         echo $statusButton;
                                     } else {
-                                        $statusButton .= '<h6><span class="badge bg-success form-control">';
+                                        $statusButton .= '<h5><span class="badge bg-success form-control">';
                                         $statusButton .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
   <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
   <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
 </svg>';
-                                        $statusButton .= $status . '</span></h6>';
+                                        $statusButton .= $status . '</span></h5>';
                                         echo $statusButton;
                                     }
                                     ?>

@@ -26,13 +26,21 @@ if($id!=''){
 } else {
     // Insert Record
     $year = date("Y");
+    $start = 1;
     $noin = '';
-    $checkid = $link->query("SELECT `noin` FROM `documents` ORDER BY id DESC LIMIT 1");
-    $checked = $checkid->fetch_assoc();
-    if ($checked && substr($checked['noin'], 0, 4) == $year) {
-        $noin = intval($checked['noin']) + 1;
+    $sql = $link->query("select noin from documents order by id desc limit 1");
+    $fetch = $sql->fetch_assoc();
+    if ($f = $fetch['noin']) {
+        if (substr($fetch['noin'], 0, 4) == $year) {
+            $continue = substr($f, 5);
+            $continue = intval($continue);
+            $continue += 1;
+            $noin = $year . "-" . $continue;
+        } else {
+            $noin = $year . "-" . $start;
+        }
     } else {
-        $noin = $year."1";
+        $noin = $year . "-" . $start;
     }
     $insert = $link->query("INSERT INTO `documents` (`id`, `noin`, `datein`, `noout`, `dateout`, `department`, `detail`, `status`, `sign`, `takendate`, `taker`) VALUES (NULL, '$noin', NOW(), '$no', '$date', '$department', '$detail', 'ລໍຖ້າ', NULL, NULL, NULL)");
     if ($insert) {

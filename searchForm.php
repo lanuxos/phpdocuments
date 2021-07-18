@@ -11,21 +11,57 @@
                 </div>
                 <div class="modal-body">
 
-                    <!-- <div class="input-group m-1 mt-3">
-                        <span class="input-group-text" id="departmentLabel">ຈາກພາກສ່ວນ</span>
-                        <input type="text" class="form-control" placeholder="ຈາກພາກສ່ວນ" aria-label="ຈາກພາກສ່ວນ" aria-describedby="department" id="department" autofocus list="departments" name="department">
+                    <div class="input-group m-1 mt-3">
+                        <label for="quarter" class="input-group-text">ສະແດງລາຍການຕາມໄຕມາດ</label>
+                        <select name="quarter" id="quarter" class="form-control">
+                            <option value="1">ໄຕມາດ 1</option>
+                            <option value="2">ໄຕມາດ 2</option>
+                            <option value="3">ໄຕມາດ 3</option>
+                            <option value="4">ໄຕມາດ 4</option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary" id="quarterSubmit" name="quarterSubmit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                            ຄົ້ນຫາ
+                        </button>
                     </div>
 
                     <div class="input-group m-1 mt-3">
-                        <span class="input-group-text" id="signLabel">ເຊັນໂດຍ</span>
-                        <input type="text" class="form-control" placeholder="ເຊັນໂດຍ" id="sign" name="sign" list="signs" aria-label="ເຊັນໂດຍ" aria-describedby="sign">
-                    </div> -->
+                        <label for="month" class="input-group-text">ສະແດງລາຍການຕາມເດືອນ</label>
+                        <select name="month" id="month" class="form-control">
+                            <option value="1">1./ ມັງກອນ</option>
+                            <option value="2">2./ ກຸມພາ</option>
+                            <option value="3">3./ ມີນາ</option>
+                            <option value="4">4./ ເມສາ</option>
+                            <option value="5">5./ ພຶດສະພາ</option>
+                            <option value="6">6./ ມີຖຸນາ</option>
+                            <option value="7">7./ ກໍລະກົດ</option>
+                            <option value="8">8./ ສິງຫາ</option>
+                            <option value="9">9./ ກັນຍາ</option>
+                            <option value="10">10./ ຕຸລາ</option>
+                            <option value="11">11./ ພະຈິກ</option>
+                            <option value="12">12./ ທັນວາ</option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary" id="monthSubmit" name="monthSubmit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                            ຄົ້ນຫາ
+                        </button>
+                    </div>
 
                     <div class="input-group m-1 mt-3">
                         <label class="input-group-text" for="from">ຈາກ</label>
                         <input type="date" class="form-control" id="from" name="from">
                         <label class="input-group-text" for="to">ເຖິງ</label>
-                        <input type="date" class="form-control" id="to" name="to">
+                        <input type="date" class="form-control" id="to" name="to" value="<?php echo date('Y-m-d'); ?>">
+                        <button type="submit" name="dateSubmit" id="dateSubmit" class="btn btn-sm btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                            ຄົ້ນຫາ
+                        </button>
                     </div>
 
                 </div>
@@ -36,18 +72,13 @@
                         </svg>
                         ຍົກເລີກ
                     </button>
-                    <button type="all" name="all" id="all" class="btn btn-secondary">
+                    <button type="submit" name="all" id="all" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                         </svg>
                         ສະແດງທັງໝົດ
                     </button>
-                    <button type="submit" name="submit" id="submit" class="btn btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                        </svg>
-                        ຄົ້ນຫາ
-                    </button>
+
                 </div>
             </div>
         </div>
