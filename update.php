@@ -1,17 +1,15 @@
 <?php
 require('conn.php');
+
+// FETCH ID FROM AJAX
 $id = $_POST['id'];
 
-$noin = 123;
-$department = mysqli_real_escape_string($link, $_POST['department']);
-$no = mysqli_real_escape_string($link, $_POST['no']);
-$date = mysqli_real_escape_string($link, $_POST['date']);
-$content = mysqli_real_escape_string($link, $_POST['content']);
-$insert = $link->query("UPDATE `documents` SET `noout`='no', `dateout`='date', `department`='department', `detail`='content'");
-if ($insert) {
-    echo "Saved";
-} else {
-    echo "Error";
-}
+// FETCH RECORD DATA VIA ID
+$select = $link->query("SELECT * FROM documents WHERE id = '$id'");
+
+$row = $select->fetch_assoc();
+
+// ENCODE TO JSON TYPE, TO MANIPULATE INSERT FORM DOM
+echo json_encode($row);
 
 ?>

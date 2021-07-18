@@ -1,12 +1,14 @@
 <?php
-
+require('conn.php');
+require('datalist.php');
 ?>
-<form action="" method="post" autocomplete="on" id="addForm">
-    <div class="modal fade" id="addDocument" tabindex="-1" aria-labelledby="addDocumentLabel" aria-hidden="true" data-bs-backdrop="static">
+<form action="" method="post" autocomplete="on" id="insertForm">
+    <input type="hidden" name="id" id="id">
+    <div class="modal fade" id="insertDocument" tabindex="-1" aria-labelledby="insertDocumentLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addDocumentLabel">ບັນທຶກລາຍການຮັບເອກະສານ</h5>
+                    <h5 class="modal-title" id="insertDocumentLabel">ບັນທຶກລາຍການຮັບເອກະສານ</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -25,25 +27,34 @@
 
                     <div class="input-group m-1 mt-3">
                         <span class="input-group-text" id="contentLabel">ເນື້ອໃນ</span>
-                        <input type="text" class="form-control" placeholder="ເນື້ອໃນ" aria-label="ເນື້ອໃນ" aria-describedby="content" id="content" autofocus list="contents" name="content">
+                        <input type="text" class="form-control" placeholder="ເນື້ອໃນ" aria-label="ເນື້ອໃນ" aria-describedby="content" id="content" list="contents" name="content">
                     </div>
 
-                    <datalist id="departments">
-                        <option value="ຫ້ອງວ່າການກະຊວງປ້ອງກັນປະເທດ"></option>
-                        <option value="ກົມໃຫຍ່ການເມືອງ"></option>
-                        <option value="ກົມໃຫຍ່ເສນາ"></option>
-                        <option value="ກົມໃຫຍ່ພະລາ"></option>
-                        <option value="ກົມໃຫຍ່ເຕັກນິກ"></option>
-                        <option value="ກອງພົນທີ່ 1"></option>
-                        <option value="ກອງພົນທີ 2"></option>
-                        <option value="ກອງພົນທີ 3"></option>
-                        <option value="ກອງພົນທີ 4"></option>
-                        <option value="ກອງພົນທີ່ 5"></option>
-                    </datalist>
+                    <hr>
 
-                    <datalist id="contents">
-                        <option value="ຂໍເຄື່ອງປະຈຳປີ"></option>
-                    </datalist>
+                    <div class="input-group m-1 mt-3">
+                        <span class="input-group-text" id="statusLabel">ສະຖານະ</span>
+                        <select name="status" id="status">
+                            <option value="ລໍຖ້າ">ລໍຖ້າ</option>
+                            <option value="ເຊັນແລ້ວ">ເຊັນແລ້ວ</option>
+                            <option value="ຮັບແລ້ວ">ຮັບແລ້ວ</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group m-1 mt-3">
+                        <span class="input-group-text" id="signLabel">ເຊັນໂດຍ</span>
+                        <input type="text" class="form-control" placeholder="ເຊັນໂດຍ" id="sign" name="sign" list="signs" aria-label="ເຊັນໂດຍ" aria-describedby="sign">
+                    </div>
+
+                    <div class="input-group m-1 mt-3">
+                        <span class="input-group-text" id="takerLabel">ຮັບໂດຍ</span>
+                        <input type="text" class="form-control" placeholder="ຮັບໂດຍ" id="taker" name="taker" aria-label="ຮັບໂດຍ" aria-describedby="taker">
+                    </div>
+
+                    <div class="input-group m-1 mt-3">
+                        <span class="input-group-text" id="takenDateLabel">ວດປ ປ່ອຍເອກະສານ</span>
+                        <input type="date" class="form-control" placeholder="ວດປ ປ່ອຍເອກະສານ" id="takenDate" name="takenDate" aria-label="ວດປ ປ່ອຍເອກະສານ" aria-describedby="takenDate">
+                    </div>
 
                 </div>
                 <div class="modal-footer">

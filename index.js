@@ -1,23 +1,41 @@
 $(document).ready(function () {
+    // View Record
+    $('.viewButton').click(function () {
+        var did = $(this).attr('id');
+        $.ajax({
+            url: "view.php",
+            method: "post",
+            data: { id: did },
+            success: function (data) {
+                $('#tableModalBody').html(data);
+                $('#viewDocument').modal.show();
+            }
+        });
+    });
     // Insert Record
-    $('#addForm').on('submit', function (e) {
+    $('#insertForm').on('submit', function (e) {
         e.preventDefault();
         $.ajax({
             url: "insert.php",
             method: "post",
-            data: $('#addForm').serialize(),
+            data: $('#insertForm').serialize(),
             // beforeSend: function () {
             //     $('#submit').val("ເພີ່ມເຂົ້າຖານຂໍ້ມູນ");
             // },
             success: function (data) {
-                $('#addForm')[0].reset();
-                $('#addDocument').modal('hide');
+                $('#insertForm')[0].reset();
+                $('#insertDocument').modal('hide');
+                // Swal.fire(
+                //     'Good job!',
+                //     'You clicked the button!',
+                //     'success'
+                //     )
                 location.reload();
-            }
+                }
         });
     });
     // Delete
-    $('.delete_btn').click(function () {
+    $('.deleteButton').click(function () {
         var did = $(this).attr('id');
         var yesno = confirm("ຕ້ອງການລົບລາຍການອອກຈາກຖານຂໍ້ມູນແທ້ບໍ?");
         if (yesno) {
@@ -33,8 +51,8 @@ $(document).ready(function () {
             });
         }
     });
-    // Edit
-    $('.edit_btn').click(function () {
+    // Update
+    $('.updateButton').click(function () {
         var did = $(this).attr('id');
         $.ajax({
             url: "update.php",
@@ -42,8 +60,31 @@ $(document).ready(function () {
             data: { id: did },
             dataType: "json",
             success: function (data) {
-                $('#no').val(data.no);
+                $('#id').val(data.id);
+                $('#no').val(data.noout);
+                $('#date').val(data.dateout);
+                $('#department').val(data.department);
+                $('#content').val(data.detail);
+                $('#status').val(data.status);
+                $('#sign').val(data.sign);
+                $('#takenDate').val(data.takendate);
+                $('#taker').val(data.taker);
+                $('#submit').val("ປັບປຸງຖານຂໍ້ມູນ");
+                $('#insertDocument').modal('show');
             }
         });
     });
+    // Update Status
+    // $('.await').click(function () {
+    //     var did = $(this).attr('id');
+    //     $ajax({
+    //         url: "status.php",
+    //         method: "post",
+    //         dataType: "json",
+    //         data: { await: did },
+    //         success: function (data) {
+    //             $('#updateStatus').modal('show');
+    //         }
+    //     });
+    // });
 });
