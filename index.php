@@ -53,7 +53,7 @@ if (isset($_POST['dateSubmit'])) {
                 <table class="table display table-striped">
                     <thead class="text-center">
                         <tr>
-                            <th colspan="9">
+                            <th colspan="9" class="d-none d-sm-table-cell d-md-table-cell d-lg-table-cell d-xl-table-cell">
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#insertDocument" class="btn btn-lg btn-success me-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
