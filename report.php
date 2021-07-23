@@ -47,7 +47,7 @@ while ($rows = $sqlQ1->fetch_assoc()) {
     } elseif (date('m', $row) == "03") {
         $q1 += 1;
         $mar1 += 1;
-    } 
+    }
 }
 $sqlQ2 = $link->query("select * from documents where year(datein) = $year");
 while ($rows = $sqlQ2->fetch_assoc()) {
@@ -61,7 +61,7 @@ while ($rows = $sqlQ2->fetch_assoc()) {
     } elseif (date('m', $row) == "06") {
         $q2 += 1;
         $jun2 += 1;
-    } 
+    }
 }
 $sqlQ3 = $link->query("select * from documents where year(datein) = $year");
 while ($rows = $sqlQ3->fetch_assoc()) {
@@ -75,7 +75,7 @@ while ($rows = $sqlQ3->fetch_assoc()) {
     } elseif (date('m', $row) == "09") {
         $q3 += 1;
         $sep3 += 1;
-    } 
+    }
 }
 $sqlQ4 = $link->query("select * from documents where year(datein) = $year");
 while ($rows = $sqlQ4->fetch_assoc()) {
@@ -121,10 +121,18 @@ $currentYearRecords = $link->query("SELECT * FROM documents WHERE YEAR(datein) =
         <div class="row m-1 bg-light p-1">
             <div class="col">
                 <table class="table table-responsive table-striped">
+                    <caption style="caption-side: top;" class="text-center fs-3 fw-bold fst-italic text-decoration-underline">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z" />
+                            <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z" />
+                            <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z" />
+                        </svg>
+                        ລາຍການເອກະສານປະຈຳປີ <?php echo $year; ?>
+                    </caption>
                     <thead class="text-center">
-                        <tr>
-                            <th colspan="9" class="text-center">ລາຍການເອກະສານປະຈຳປີ <?php echo $year; ?></th>
-                        </tr>
+                        <!-- <tr>
+                            <th colspan="9" class="text-center"></th>
+                        </tr> -->
                         <tr>
                             <th colspan="2" class="align-middle w-15">ຂໍ້ມູນຂາເຂົ້າ</th>
                             <th colspan="2" class="align-middle w-15">ຂໍ້ມູນເອກະສານ</th>
@@ -174,6 +182,7 @@ $currentYearRecords = $link->query("SELECT * FROM documents WHERE YEAR(datein) =
     <?php require('js.php'); ?>
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
+        Chart.defaults.global.defaultFontFamily = "'defago', 'Defago Noto Sans', 'Phetsarath OT'";
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -218,7 +227,7 @@ $currentYearRecords = $link->query("SELECT * FROM documents WHERE YEAR(datein) =
                             <?php echo $jan1; ?>,
                             <?php echo $feb1; ?>,
                             <?php echo $mar1; ?>,
-                            0,0,0,0,0,0,0,0,0
+                            0, 0, 0, 0, 0, 0, 0, 0, 0
                         ],
                         backgroundColor: [
                             // 'rgba(255, 99, 132, 0.2)',
@@ -241,11 +250,11 @@ $currentYearRecords = $link->query("SELECT * FROM documents WHERE YEAR(datein) =
                     {
                         label: 'ຈຳນວນເອກະສານໄຕມາດ 2: ' + <?php echo $q2; ?> + ' ລາຍການ',
                         data: [
-                            0,0,0,
+                            0, 0, 0,
                             <?php echo $apr2; ?>,
                             <?php echo $may2; ?>,
                             <?php echo $jun2; ?>,
-                            0,0,0,0,0,0
+                            0, 0, 0, 0, 0, 0
                         ],
                         backgroundColor: [
                             // 'rgba(255, 99, 132, 0.2)',
@@ -268,11 +277,11 @@ $currentYearRecords = $link->query("SELECT * FROM documents WHERE YEAR(datein) =
                     {
                         label: 'ຈຳນວນເອກະສານໄຕມາດ 3: ' + <?php echo $q3; ?> + ' ລາຍການ',
                         data: [
-                            0,0,0,0,0,0,
+                            0, 0, 0, 0, 0, 0,
                             <?php echo $jul3; ?>,
                             <?php echo $aug3; ?>,
                             <?php echo $sep3; ?>,
-                            0,0,0
+                            0, 0, 0
                         ],
                         backgroundColor: [
                             // 'rgba(255, 99, 132, 0.2)',
@@ -295,7 +304,7 @@ $currentYearRecords = $link->query("SELECT * FROM documents WHERE YEAR(datein) =
                     {
                         label: 'ຈຳນວນເອກະສານໄຕມາດ 4: ' + <?php echo $q4; ?> + ' ລາຍການ',
                         data: [
-                            0,0,0,0,0,0,0,0,0,
+                            0, 0, 0, 0, 0, 0, 0, 0, 0,
                             <?php echo $oct4; ?>,
                             <?php echo $nov4; ?>,
                             <?php echo $dec4; ?>,
