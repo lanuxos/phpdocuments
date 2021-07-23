@@ -38,7 +38,8 @@ if (isset($_POST['dateSubmit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title; ?></title>
+    <!-- <title><?php echo 'ອພ-ບພ - '.$title; ?></title> -->
+    <title>ຂາອອກ-ຂາເຂົ້າ ກົມ ອພ-ບພ</title>
     <?php require('header.php'); ?>
 </head>
 
@@ -48,28 +49,33 @@ if (isset($_POST['dateSubmit'])) {
     <?php require('insertForm.php'); ?>
     <?php require('searchForm.php'); ?>
     <div class="container-fluid mt-1">
+        <div class="row">
+            <div class="col text-center m-1">
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#insertDocument" class="btn btn-lg btn-success me-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                        </svg>
+                        ເພີ່ມໃໝ່
+                    </button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#searchDocument" class="btn btn-lg btn-primary me-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                        ຄົ້ນຫາ
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="row m-1 bg-light p-1">
             <div class="col">
                 <table class="table display table-striped">
                     <thead class="text-center">
-                        <tr>
+                        <!-- <tr>
                             <th colspan="9" class="d-none d-sm-table-cell d-md-table-cell d-lg-table-cell d-xl-table-cell">
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#insertDocument" class="btn btn-lg btn-success me-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
-                                        </svg>
-                                        ເພີ່ມໃໝ່
-                                    </button>
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#searchDocument" class="btn btn-lg btn-primary me-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                        </svg>
-                                        ຄົ້ນຫາ
-                                    </button>
-                                </div>
+
                             </th>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th rowspan="2" class="d-none d-table-cell d-lg-table-cell align-middle w5 d-sm-table-cell d-md-table-cell">#</th>
                             <th colspan="2" class="d-none d-table-cell d-lg-table-cell align-middle w15">ຂໍ້ມູນຂາເຂົ້າ</th>

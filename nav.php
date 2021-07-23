@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top">
     <div class="container-fluid">
-        <!-- <img src="asset/laoArmyEmblem.svg" alt="Lao Army Emblem" width="30" height="30" class="me-1"> -->
         <a class="navbar-brand" href="index.php">
-            <img src="asset/logo32.png" alt="Logo" class="me-1">
+            <img src="asset/laoArmyEmblem.svg" alt="Lao Army Emblem" width="30" height="30" class="me-1">
+            <!-- <img src="asset/logo32.png" alt="Logo" class="me-1"> -->
             ຂາອອກ-ຂາເຂົ້າ
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
