@@ -3,16 +3,16 @@ require('conn.php');
 $title = basename($_SERVER['PHP_SELF']);
 $year = date("Y");
 if (isset($_POST['dateSubmit'])) {
-    $from = $_POST['from'];
-    $to = $_POST['to'];
+    $from = mysqli_real_escape_string($link, $_POST['from']);
+    $to = mysqli_real_escape_string($link, $_POST['to']);
     $currentYearRecords = $link->query("SELECT * FROM documents WHERE datein BETWEEN '$from' AND '$to'");
 } elseif (isset($_POST['all'])) {
     $currentYearRecords = $link->query("SELECT * FROM documents");
 } elseif (isset($_POST['monthSubmit'])) {
-    $month = $_POST['month'];
+    $month = mysqli_real_escape_string($link, $_POST['month']);
     $currentYearRecords = $link->query("SELECT * FROM documents WHERE MONTH(datein) = '$month'");
 } elseif (isset($_POST['quarterSubmit'])) {
-    $quarter = $_POST['quarter'];
+    $quarter = mysqli_real_escape_string($link, $_POST['quarter']);
     if ($quarter == 1) {
         $from = 1;
         $to = 3;
