@@ -5,11 +5,19 @@ $year = date("Y");
 if (isset($_POST['dateSubmit'])) {
     $from = mysqli_real_escape_string($link, $_POST['from']);
     $to = mysqli_real_escape_string($link, $_POST['to']);
+    // $sql = $link->prepare("SELECT * FROM documents WHERE datein BETWEEN ? AND ?");
+    // $sql->bind_param('ss', $from, $to);
+    // $sql->execute();
+    // $currentYearRecords = $sql->get_result();
     $currentYearRecords = $link->query("SELECT * FROM documents WHERE datein BETWEEN '$from' AND '$to'");
 } elseif (isset($_POST['all'])) {
     $currentYearRecords = $link->query("SELECT * FROM documents");
 } elseif (isset($_POST['monthSubmit'])) {
     $month = mysqli_real_escape_string($link, $_POST['month']);
+    // $sql = $link->prepare("SELECT * FROM documents WHERE MONTH(datein) = ?");
+    // $sql->bind_param('s', $month);
+    // $sql->execute();
+    // $currentYearRecords = $sql->get_result();
     $currentYearRecords = $link->query("SELECT * FROM documents WHERE MONTH(datein) = '$month'");
 } elseif (isset($_POST['quarterSubmit'])) {
     $quarter = mysqli_real_escape_string($link, $_POST['quarter']);
@@ -26,6 +34,10 @@ if (isset($_POST['dateSubmit'])) {
         $from = 9;
         $to = 12;
     }
+    // $sql = $link->prepare("SELECT * FROM documents WHERE MONTH(datein) BETWEEN ? AND ?");
+    // $sql->bind_param('ii', $from, $to);
+    // $sql->execute();
+    // $currentYearRecords = $sql->get_result();
     $currentYearRecords = $link->query("SELECT * FROM documents WHERE MONTH(datein) BETWEEN '$from' AND '$to'");
 } else {
     $currentYearRecords = $link->query("SELECT * FROM documents WHERE YEAR(datein) = '$year' ORDER BY id DESC");
