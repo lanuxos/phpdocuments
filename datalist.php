@@ -25,4 +25,5 @@
 <datalist id="signs">
     <option value="ພົຈ ບຸນແຍງ ວິໄລສົມ"></option>
     <option value="ພັອ ໝອນແກ້ວ ຄຳອ້ວນ"></option>
+    <option value="ພັອ ສົມພິນ ພົມມະຈັນ"></option>
 </datalist>

@@ -13,18 +13,18 @@ if (isset($_POST['dateSubmit'])) {
     $currentYearRecords = $link->query("SELECT * FROM documents WHERE MONTH(datein) = '$month'");
 } elseif (isset($_POST['quarterSubmit'])) {
     $quarter = $_POST['quarter'];
-    if($quarter == 1){
+    if ($quarter == 1) {
         $from = 1;
-        $to = 3;    
-    } elseif ($quarter == 2){
+        $to = 3;
+    } elseif ($quarter == 2) {
         $from = 4;
-        $to = 6;    
-    } elseif ($quarter == 3){
+        $to = 6;
+    } elseif ($quarter == 3) {
         $from = 7;
-        $to = 8;    
-    } else{
+        $to = 8;
+    } else {
         $from = 9;
-        $to = 12;    
+        $to = 12;
     }
     $currentYearRecords = $link->query("SELECT * FROM documents WHERE MONTH(datein) BETWEEN '$from' AND '$to'");
 } else {
@@ -47,7 +47,6 @@ if (isset($_POST['dateSubmit'])) {
     <?php require('viewForm.php'); ?>
     <?php require('insertForm.php'); ?>
     <?php require('searchForm.php'); ?>
-    <?php require('monthForm.php'); ?>
     <div class="container-fluid mt-1">
         <div class="row m-1 bg-light p-1">
             <div class="col">
@@ -72,19 +71,20 @@ if (isset($_POST['dateSubmit'])) {
                             </th>
                         </tr>
                         <tr>
-                            <th colspan="2" class="align-middle w-15">ຂໍ້ມູນຂາເຂົ້າ</th>
-                            <th colspan="2" class="align-middle w-15">ຂໍ້ມູນເອກະສານ</th>
-                            <th rowspan="2" class="align-middle w15">ມາຈາກພາກສ່ວນ</th>
-                            <th rowspan="2" class="align-middle w25">ເນື້ອໃນເອກະສານ</th>
-                            <th rowspan="2" class="align-middle w10">ສະຖານະ</th>
-                            <th rowspan="2" class="align-middle w10">ເຊັນໂດຍ</th>
-                            <th rowspan="2" class="align-middle w10">ຜູ້ຮັບເອກະສານ<br>ວດປ</th>
+                            <th rowspan="2" class="d-none d-table-cell d-lg-table-cell align-middle w5 d-sm-table-cell d-md-table-cell">#</th>
+                            <th colspan="2" class="d-none d-table-cell d-lg-table-cell align-middle w15">ຂໍ້ມູນຂາເຂົ້າ</th>
+                            <th colspan="2" class="d-none d-table-cell d-lg-table-cell align-middle w15">ຂໍ້ມູນເອກະສານ</th>
+                            <th rowspan="2" class="d-none d-table-cell d-lg-table-cell align-middle w15 d-sm-table-cell d-md-table-cell">ມາຈາກພາກສ່ວນ</th>
+                            <th rowspan="2" class="d-none d-table-cell d-lg-table-cell align-middle w20">ເນື້ອໃນເອກະສານ</th>
+                            <th rowspan="2" class="d-none d-table-cell d-lg-table-cell align-middle w10 d-sm-table-cell d-md-table-cell">ສະຖານະ</th>
+                            <th rowspan="2" class="d-none d-table-cell d-lg-table-cell align-middle w10">ເຊັນໂດຍ</th>
+                            <th rowspan="2" class="d-none d-table-cell d-lg-table-cell align-middle w10">ຜູ້ຮັບເອກະສານ<br>ວດປ</th>
                         </tr>
                         <tr>
-                            <th>ເລກທີ</th>
-                            <th>ວດປ</th>
-                            <th>ເລກທີ</th>
-                            <th>ວດປ</th>
+                            <th class="d-none d-table-cell d-lg-table-cell">ເລກທີ</th>
+                            <th class="d-none d-table-cell d-lg-table-cell">ວດປ</th>
+                            <th class="d-none d-table-cell d-lg-table-cell">ເລກທີ</th>
+                            <th class="d-none d-table-cell d-lg-table-cell">ວດປ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,37 +92,42 @@ if (isset($_POST['dateSubmit'])) {
                         while ($ar = $currentYearRecords->fetch_assoc()) {
                         ?>
                             <tr>
-                                <td class="text-truncate">
-                                    <button class="btn btn-sm btn-success viewButton form-control text-start" data-bs-toggle="modal" data-bs-target="#viewDocument" id="<?php echo $ar['id']; ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
-                                        </svg>
-                                        <!-- <?php echo substr($ar['noin'], 4); ?> -->
-                                        <?php echo $ar['noin']; ?>
-                                    </button>
+                                <td class="d-none d-table-cell d-lg-table-cell">
+                                    <input type="hidden" name="record" value="<?php echo $ar['id']; ?>">
+                                    <div class="btn-group" role="group" aria-label="action">
+                                        <button class="btn btn-sm btn-success viewButton" data-bs-toggle="modal" data-bs-target="#viewDocument" id="<?php echo $ar['id']; ?>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                            </svg>
+                                            <!-- <?php echo substr($ar['noin'], 4); ?> -->
+                                        </button>
+                                        <button class="btn btn-sm btn-warning updateButton" id="<?php echo $ar['id']; ?>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                            </svg>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger deleteButton" id="<?php echo $ar['id']; ?>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </td>
-                                <td class="text-truncate">
-                                    <button class="btn btn-sm btn-warning updateButton form-control text-start" id="<?php echo $ar['id']; ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                        </svg>
-                                        <?php echo $ar['datein']; ?>
-                                    </button>
+                                <td class="text-truncate d-none d-table-cell d-lg-table-cell">
+                                    <?php echo $ar['noin']; ?>
                                 </td>
-                                <td class="text-truncate">
-                                    <button class="btn btn-sm btn-danger deleteButton form-control text-start" id="<?php echo $ar['id']; ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                                        </svg>
-                                        <?php echo $ar['noout']; ?>
-                                    </button>
+                                <td class="text-truncate d-none d-table-cell d-lg-table-cell d-sm-table-cell d-md-table-cell">
+                                    <?php echo $ar['datein']; ?>
                                 </td>
-                                <td class="text-truncate"><?php echo $ar['dateout']; ?></td>
-                                <td class="text-truncate"><?php echo $ar['department']; ?></td>
-                                <td class="text-truncate"><?php echo $ar['detail']; ?></td>
-                                <td class="text-truncate text-center">
+                                <td class="text-truncate d-none d-table-cell d-lg-table-cell">
+                                    <?php echo $ar['noout']; ?>
+                                </td>
+                                <td class="text-truncate d-none d-table-cell d-lg-table-cell"><?php echo $ar['dateout']; ?></td>
+                                <td class="text-truncate d-none d-table-cell d-lg-table-cell d-sm-table-cell d-md-table-cell"><?php echo $ar['department']; ?></td>
+                                <td class="text-truncate d-none d-table-cell d-lg-table-cell"><?php echo $ar['detail']; ?></td>
+                                <td class="text-truncate text-center d-none d-table-cell d-lg-table-cell d-sm-table-cell d-md-table-cell">
                                     <?php
                                     $statusButton = '';
                                     $status = $ar['status'];
@@ -152,8 +157,8 @@ if (isset($_POST['dateSubmit'])) {
                                     }
                                     ?>
                                 </td>
-                                <td class="text-truncate"><?php echo @$ar['sign']; ?></td>
-                                <td class="text-truncate">
+                                <td class="text-truncate d-none d-table-cell d-lg-table-cell"><?php echo @$ar['sign']; ?></td>
+                                <td class="text-truncate d-none d-table-cell d-lg-table-cell">
                                     <?php
                                     if ($ar['taker']) {
                                         echo @$ar['taker'] . "_" . @$ar['takendate'];
@@ -171,6 +176,15 @@ if (isset($_POST['dateSubmit'])) {
     </div>
     <?php require('footer.php'); ?>
     <?php require('js.php'); ?>
+    <script>
+        // Swal.fire({
+        //     position: 'top-end',
+        //     icon: 'info',
+        //     title: 'Welcome back, Sir!',
+        //     showConfirmButton: false,
+        //     timer: 5000
+        // });
+    </script>
 </body>
 
 </html>

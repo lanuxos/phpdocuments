@@ -5,10 +5,12 @@ $(document).ready(function () {
         $.ajax({
             url: "view.php",
             method: "post",
-            data: { id: did },
+            data: {
+                id: did
+            },
             success: function (data) {
                 $('#tableModalBody').html(data);
-                $('#viewDocument').modal.show();
+                $('#viewDocument').modal.show(); // Uncaught TypeError: $(...).modal.show is not a function
             }
         });
     });
@@ -25,31 +27,65 @@ $(document).ready(function () {
             success: function (data) {
                 $('#insertForm')[0].reset();
                 $('#insertDocument').modal('hide');
-                // Swal.fire(
-                //     'Good job!',
-                //     'You clicked the button!',
-                //     'success'
-                //     )
-                location.reload();
-                }
+                Swal.fire({
+                    // position: 'top-end',
+                    icon: 'success',
+                    title: 'ບັນທຶກລາຍການໃໝ່ລົງຖານຂໍ້ມູນແລ້ວ',
+                    showConfirmButton: false,
+                    timer: 2000
+                }).then(function () {
+                    location.reload();
+                });
+            }
         });
     });
     // Delete
     $('.deleteButton').click(function () {
         var did = $(this).attr('id');
-        var yesno = confirm("ຕ້ອງການລົບລາຍການອອກຈາກຖານຂໍ້ມູນແທ້ບໍ?");
-        if (yesno) {
-            $.ajax({
-                url: "delete.php",
-                method: "post",
-                data: {
-                    id: did
-                },
-                success: function (data) {
-                    location.reload();
-                }
-            });
-        }
+        // var yesno = confirm("ຕ້ອງການລົບລາຍການອອກຈາກຖານຂໍ້ມູນແທ້ບໍ?");
+        // if (yesno) {
+        //     $.ajax({
+        //         url: "delete.php",
+        //         method: "post",
+        //         data: {
+        //             id: did
+        //         },
+        //         success: function (data) {
+        //             location.reload();
+        //         }
+        //     });
+        // }
+        Swal.fire({
+            title: 'ຢືນຢັນ?',
+            text: "ທ່ານຕ້ອງການລົບລາຍການດັ່ງກ່າວອອກຈາກຖານຂໍ້ມູນແທ້ບໍ!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ຢືນຢັນການລົບ!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "delete.php",
+                    method: "post",
+                    data: {
+                        id: did
+                    },
+                    success: function (data) {
+                        Swal.fire({
+                            title: 'ລົບແລ້ວ!',
+                            text: 'ລາຍການດັ່ງກ່າວ ຖືກລົບອອກຈາກຖານຂໍ້ມູນແລ້ວ.',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 2000
+                        }).then(function () {
+                            location.reload();
+                        });
+                    }
+                });
+
+            }
+        })
     });
     // Update
     $('.updateButton').click(function () {
@@ -57,7 +93,9 @@ $(document).ready(function () {
         $.ajax({
             url: "update.php",
             method: "post",
-            data: { id: did },
+            data: {
+                id: did
+            },
             dataType: "json",
             success: function (data) {
                 $('#id').val(data.id);
@@ -74,17 +112,14 @@ $(document).ready(function () {
             }
         });
     });
-    // Update Status
-    // $('.await').click(function () {
-    //     var did = $(this).attr('id');
-    //     $ajax({
-    //         url: "status.php",
-    //         method: "post",
-    //         dataType: "json",
-    //         data: { await: did },
-    //         success: function (data) {
-    //             $('#updateStatus').modal('show');
-    //         }
-    //     });
-    // });
+
 });
+// Annual Chart Toggle Display
+// function toggleDisplay() {
+//     var div = document.getElementById("annualChart");
+//     if (div.style.display === "none") {
+//         div.style.display = "block";
+//     } else {
+//         div.style.display = "none";
+//     }
+// }

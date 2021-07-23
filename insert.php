@@ -31,16 +31,16 @@ if($id!=''){
     $sql = $link->query("select noin from documents order by id desc limit 1");
     $fetch = $sql->fetch_assoc();
     if ($f = $fetch['noin']) {
-        if (substr($fetch['noin'], 0, 4) == $year) {
-            $continue = substr($f, 5);
+        if (substr($fetch['noin'], -4) == $year) {
+            $continue = substr($f, 0, -5);
             $continue = intval($continue);
             $continue += 1;
-            $noin = $year . "-" . $continue;
+            $noin = $continue . "-" . $year;
         } else {
-            $noin = $year . "-" . $start;
+            $noin = $start . "-" . $year;
         }
     } else {
-        $noin = $year . "-" . $start;
+        $noin = $start . "-" . $year;
     }
     $insert = $link->query("INSERT INTO `documents` (`id`, `noin`, `datein`, `noout`, `dateout`, `department`, `detail`, `status`, `sign`, `takendate`, `taker`) VALUES (NULL, '$noin', NOW(), '$no', '$date', '$department', '$detail', 'ລໍຖ້າ', NULL, NULL, NULL)");
     if ($insert) {
