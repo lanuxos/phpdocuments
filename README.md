@@ -1,5 +1,6 @@
 # phpdocuments
 Documentation system using pure PHP, AJAX, Bootstrap, DataTables, ChartJS
+ລະບົບບັນທຶກ ຂາເຂົ້າ-ຂາອອກ ໃຊ້ໃນຫ້ອງການ ອົງກອນຕ່າງໆ
 ## Pages
     - index.php
     - report.php
