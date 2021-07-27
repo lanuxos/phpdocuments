@@ -8,10 +8,26 @@ $no = mysqli_real_escape_string($link, $_POST['no']);
 $date = mysqli_real_escape_string($link, $_POST['date']);
 $department = mysqli_real_escape_string($link, $_POST['department']);
 $detail = mysqli_real_escape_string($link, $_POST['content']);
-$status = mysqli_real_escape_string($link, $_POST['status']);
-$sign = mysqli_real_escape_string($link, $_POST['sign']);
-$takenDate = mysqli_real_escape_string($link, $_POST['takenDate']);
-$taker = mysqli_real_escape_string($link, $_POST['taker']);
+if ($_POST['status']){
+    $status = mysqli_real_escape_string($link, $_POST['status']);
+} else {
+    $status = 'ລໍຖ້າ';
+}
+if ($_POST['sign']){
+    $sign = mysqli_real_escape_string($link, $_POST['sign']);
+} else {
+    $sign = NULL;
+}
+if ($_POST['takenDate']){
+    $takenDate = mysqli_real_escape_string($link, $_POST['takenDate']);
+} else {
+    $takenDate = NULL;
+}
+if ($_POST['taker']){
+    $taker = mysqli_real_escape_string($link, $_POST['taker']);
+} else {
+    $taker = NULL;
+}
 
 // ຫາກ ID ມີຄ່າ, ໃຫ້ປັບປຸງຖານຂໍ້ມູນ ໂດຍອ້າງອີງຈາກ ID ທີ່ຮັບມາ
 if($id!=''){
@@ -42,7 +58,7 @@ if($id!=''){
     } else {
         $noin = $start . "-" . $year;
     }
-    $insert = $link->query("INSERT INTO `documents` (`id`, `noin`, `datein`, `noout`, `dateout`, `department`, `detail`, `status`, `sign`, `takendate`, `taker`) VALUES (NULL, '$noin', NOW(), '$no', '$date', '$department', '$detail', 'ລໍຖ້າ', NULL, NULL, NULL)");
+    $insert = $link->query("INSERT INTO `documents` (`id`, `noin`, `datein`, `noout`, `dateout`, `department`, `detail`, `status`, `sign`, `takendate`, `taker`) VALUES (NULL, '$noin', NOW(), '$no', '$date', '$department', '$detail', '$status', '$sign', '$takenDate', '$taker')");
     if ($insert) {
         echo "Saved";
     } else {
