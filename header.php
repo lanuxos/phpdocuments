@@ -1,4 +1,4 @@
-<title>ລະບົບບັນທຶກຂາເຂົ້າ-ຂາອອກ ອພ-ບພ</title>
+<title>ລະບົບບັນທຶກເອກະສານ ຂາເຂົ້າ-ຂາອອກ</title>
 <link rel="stylesheet" href="bootstrap5/bootstrap5.min.css">
 <link rel="stylesheet" href="bootstrap5/bootstrap5-icons.css">
 <link rel="stylesheet" href="chartJS/Chart.min.css">
