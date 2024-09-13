@@ -51,7 +51,7 @@ if (isset($_POST['dateSubmit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <title><?php echo 'ອພ-ບພ - '.$title; ?></title> -->
-    <title>ຂາອອກ-ຂາເຂົ້າ ກົມ ອພ-ບພ</title>
+    <title>ຂາອອກ-ຂາເຂົ້າ</title>
     <?php require('header.php'); ?>
 </head>
 
